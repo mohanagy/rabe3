@@ -46,6 +46,12 @@ const fs = require("fs");
       );
       if (Inventory) {
         result[id] = "Passed";
+        let active = await page.$(
+          'button[data-form="CreateBeneficiaryReceipt"]'
+        );
+
+        if (active) result[id] = result[id] + " - Active";
+        else result[id] = result[id] + " - not Active";
       } else {
         result[id] = "Failed";
       }
